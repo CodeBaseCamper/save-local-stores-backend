@@ -1,4 +1,6 @@
 import os
+from typing import Union
+
 import psycopg2
 from psycopg2.extensions import AsIs
 from psycopg2.extras import RealDictCursor
@@ -70,10 +72,32 @@ class SQL(object):
         return data
 
     def query(self, query, args=None):
+        # run a given query
         return self._execute(query, args)
 
     def query_all(self, table_name):
+        # select all from given table
         query = "SELECT * FROM %(table_name)s"
         return self.query(query, {'table_name': AsIs(table_name)})
 
+    def query_where(self, table_name: str, args: dict, select: Union[list, str] = "*", connector: str = 'AND') -> dict:
+        query = None
+        select = select if type(select) == str else ", ".join(select)
+        query_base = f"SELECT {select} FROM %(table_name)s"
+
+        if not args:
+            return {'query': query, 'args': args}
+        else:
+            for column in args:
+                print(column)
+                if not query:
+                    # first data
+                    query = f"{query_base} WHERE {column} = %({column})s"
+                else:
+                    # append other data
+                    query = f"{query} {connector} {column} = %({column})s"
+        # add table name to args
+        args['table_name'] = AsIs(table_name)
+
+        return self.query(query, args)
 
