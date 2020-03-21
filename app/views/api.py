@@ -11,6 +11,17 @@ log.add(f"{os.path.join(DefaultPaths.LOG_PATH)}/api.log", rotation="5 MB",
         format="[{time:HH:mm:ss}] [{level}] {message}")
 
 
+@app.route('/', methods=['GET'])
+def show_hello():
+
+    log.debug("show_hello()")
+    data = {
+        'status': 200,
+        'message': "Hello"
+    }
+    return jsonify(data)
+
+
 @app.route('/info', methods=['GET'])
 @token_required
 def show_api_info():
