@@ -1,6 +1,7 @@
 import os
 import psycopg2
 from psycopg2.extensions import AsIs
+from psycopg2.extras import RealDictCursor
 
 from loguru import logger
 
@@ -19,9 +20,6 @@ class SQL(object):
             "password": sql_pass,
             "dbname": sql_db
         }
-        self.server_ip = server_ip
-        self.sql_user = sql_user
-        self.sql_pass = sql_pass
 
         self.curr_conn = None
 
@@ -30,7 +28,7 @@ class SQL(object):
             conn = psycopg2.connect(**self.db_config)
             conn.set_client_encoding('utf8')
             # create a cursor
-            self.curr_conn = conn.cursor()
+            self.curr_conn = conn.cursor(cursor_factory=RealDictCursor)
         except Exception as desc:
             print(desc)
             pass
