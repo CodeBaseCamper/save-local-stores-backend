@@ -6,6 +6,7 @@ import configparser
 from flask import Flask, render_template, g
 
 from .constants import DefaultPaths
+from .helper.db_conn import SQL
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -18,6 +19,16 @@ app.debug = debug
 
 TOKEN = config['settings']['api_token']
 
-from .views import api
+# setup database connection class
+db_config = config['database']
+sql = SQL(
+    db_config['host'],
+    db_config['user'],
+    db_config['password'],
+    db_config['database_name'],
+)
+
+from .helper.helper import return_json
+from .views import *
 
 # dyn_query = DynQuery(config.get('database', 'ip'), config.get('database', 'user'), config.get('database', 'password'), config.get('database', 'database_name'))
