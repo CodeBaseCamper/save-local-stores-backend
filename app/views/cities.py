@@ -12,6 +12,7 @@ log.add(f"{os.path.join(DefaultPaths.LOG_PATH)}/cities.log", rotation="5 MB",
 
 
 @app.route('/cities', methods=['GET'])
+@token_required
 def show_all_cities():
     # get all cities
     log.debug("show_all_cities()")
