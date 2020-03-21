@@ -19,3 +19,28 @@ def show_all_cities():
     result = sql.query_all('cities')
 
     return return_json(result)
+
+
+@app.route('/cities/shops/<int:city_id>', methods=['GET'])
+#@token_required
+def get_all_shops_by_city_id(city_id):
+    result = sql.query_where(
+        'shops',
+        args={'city_id': city_id},
+        select=[
+            "id",
+            "description",
+            "business_categorie_id",
+            "name",
+            "owner_firstname",
+            "owner_lastname",
+            "owner_picture",
+            "picture",
+            "street",
+            "street_number",
+            "telephone",
+            "zip_code"
+        ]
+    )
+
+    return return_json(result)
