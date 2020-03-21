@@ -35,4 +35,5 @@ def token_required(f):
 @app.after_request
 def set_header(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET"
     return response
