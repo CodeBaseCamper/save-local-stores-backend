@@ -1,7 +1,7 @@
 import os
 from functools import wraps
 
-from app import DefaultPaths
+from app import DefaultPaths, TOKEN
 from flask import request, jsonify
 
 from loguru import logger
@@ -25,7 +25,7 @@ def token_required(f):
         if not token:
             return jsonify({'response': 401, 'message': 'Unauthorized'})
 
-        if token == "UmKWBAFEjheDqrqBurIrcwtXtmjsxZGoxhuxtkCVPlyIpfWFxysGvvhwwesxkVtlNmXcXvpVLjFNhXWlyfEieTvioVwySfXSBXf":
+        if token == TOKEN:
             log.debug("Authorized !")
             return f(*args, **kwargs)
         else:

@@ -16,6 +16,8 @@ app.secret_key = b'k%20RzmA7Guwy5tdC4gy&PC8Hw4t*QY9pUy2azQb*vU3uHEVb4XIQZ8w^lKUb
 debug = bool(config.getboolean('settings', 'debug'))
 app.debug = debug
 
+TOKEN = config['settings']['api_token']
+
 from .views import api
 
 # dyn_query = DynQuery(config.get('database', 'ip'), config.get('database', 'user'), config.get('database', 'password'), config.get('database', 'database_name'))
