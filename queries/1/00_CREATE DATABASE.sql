@@ -1,0 +1,1 @@
+CREATE DATABASE save_local_stores
