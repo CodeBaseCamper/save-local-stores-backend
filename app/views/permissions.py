@@ -31,3 +31,9 @@ def token_required(f):
         else:
             return jsonify({'response': 401, 'message': 'Unauthorized'})
     return decorator
+
+
+@app.after_request
+def set_header(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
