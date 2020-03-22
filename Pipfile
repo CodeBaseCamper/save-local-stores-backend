@@ -8,6 +8,7 @@ requests = "*"
 flask = "*"
 loguru = "*"
 psycopg2 = "*"
+xhtml2pdf = "*"
 
 [dev-packages]
 loguru = "*"
