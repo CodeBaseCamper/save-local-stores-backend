@@ -45,7 +45,6 @@ def get_voucher_by_id(voucher_id):
 @app.route('/vouchers/pdf/<int:shop_id>/<int:amount>', methods=['GET'])
 def test(shop_id, amount):
     log.info(f"Generate PDF for shop[{shop_id}] with an amount of {amount} EURO.")
-    amount = "{0:.2f}".format(amount)
     file_path = None
     try:
         # generate pdf
