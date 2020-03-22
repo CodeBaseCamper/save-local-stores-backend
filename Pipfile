@@ -7,7 +7,7 @@ name = "pypi"
 requests = "*"
 flask = "*"
 loguru = "*"
-psycopg2 = "*"
+#psycopg2 = "*"
 xhtml2pdf = "*"
 
 [dev-packages]
