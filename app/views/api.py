@@ -1,10 +1,8 @@
 import os
 
-from flask import jsonify
 from loguru import logger
 
-from app import app, DefaultPaths
-from app.views.permissions import token_required
+from app import app, DefaultPaths, return_json
 
 log = logger
 log.add(f"{os.path.join(DefaultPaths.LOG_PATH)}/api.log", rotation="5 MB",
@@ -17,4 +15,4 @@ def show_hello():
         'status': 200,
         'message': "Hello"
     }
-    return jsonify(data)
+    return return_json(data)
