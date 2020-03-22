@@ -11,8 +11,4 @@ log.add(f"{os.path.join(DefaultPaths.LOG_PATH)}/api.log", rotation="5 MB",
 
 @app.route('/', methods=['GET'])
 def show_hello():
-    data = {
-        'status': 200,
-        'message': "Hello"
-    }
-    return return_json(data)
+    return return_json(message="Hello")
