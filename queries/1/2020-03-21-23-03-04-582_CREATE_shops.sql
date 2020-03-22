@@ -7,8 +7,8 @@ CREATE TABLE "public"."shops" (
    "street" varchar(255) NOT NULL,
    "street_number" varchar(255) NOT NULL,
    "zip_code" varchar(255) NOT NULL,
-   "picture" bytea,
-   "owner_picture" bytea,
+   "picture" int4,
+   "owner_picture" int4,
    "business_categorie_id" int4 NOT NULL,
    PRIMARY KEY ("id"),
    FOREIGN KEY ("business_categorie_id") REFERENCES "public"."business_categories" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION
