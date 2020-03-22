@@ -4,3 +4,4 @@ from . import permissions
 from . import cities
 from . import buisness
 from . import vouchers
+from . import shops
