@@ -27,6 +27,7 @@ def get_all_shops_by_city_id(city_id):
 
     query = """
         SELECT
+            "shops"."id",
             "shops"."description",
             "shops"."business_categorie_id",
             "shops"."name",
