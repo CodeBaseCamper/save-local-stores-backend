@@ -10,7 +10,7 @@ log.add(f"{os.path.join(DefaultPaths.LOG_PATH)}/shops.log", rotation="5 MB",
         format="[{time:HH:mm:ss}] [{level}] {message}")
 
 
-@app.route('/shop/<int:shop_id>', methods=['GET'])
+@app.route('/shops/<int:shop_id>', methods=['GET'])
 #@token_required
 def get_shop_info_by_id(shop_id):
     results = sql.query_where(
